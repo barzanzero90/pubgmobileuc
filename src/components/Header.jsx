@@ -241,21 +241,6 @@ const Header = () => {
                   )}
                 </h3>
               </Link>
-              <button
-                onClick={() => setShowLogOut(!showLogOut)}
-                className="flex flex-row-reverse justify-center items-center gap-2 text-xl hover:bg-[#969393]/15 p-1 rounded-md"
-              >
-                <TbLogout size={28} />
-                چوونەدەرەوە
-              </button>
-
-              {showLogOut && (
-                <LogOutModal
-                  showLogOut={showLogOut}
-                  setShowLogOut={setShowLogOut}
-                  logOut={handleLogOutUser}
-                />
-              )}
 
               <div
                 className={`flex flex-col sm:hidden ${
@@ -291,6 +276,22 @@ const Header = () => {
                   <p>دڵخوازەکانم</p>
                 </Link> */}
               </div>
+
+              <button
+                onClick={() => setShowLogOut(!showLogOut)}
+                className="flex flex-row-reverse justify-center items-center gap-2 text-xl hover:bg-[#969393]/15 p-1 rounded-md"
+              >
+                <TbLogout size={28} />
+                چوونەدەرەوە
+              </button>
+
+              {showLogOut && (
+                <LogOutModal
+                  showLogOut={showLogOut}
+                  setShowLogOut={setShowLogOut}
+                  logOut={handleLogOutUser}
+                />
+              )}
             </div>
           )}
         </div>
