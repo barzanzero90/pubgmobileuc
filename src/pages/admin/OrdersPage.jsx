@@ -7,6 +7,7 @@ import { formatMoney } from "../../utils/FormatMoney";
 import { BiTime } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import SmallUC from "../../assets/images/smalluc.png";
+import { FormatDate } from "../../utils/FormatDate";
 
 const OrdersPage = () => {
   const { user } = useAuth();
@@ -75,7 +76,7 @@ const OrdersPage = () => {
 
                             <div className="flex justify-center items-center gap-1">
                               <BiTime size={18} />
-                              <p>22/2/2022</p>
+                              <p>{FormatDate(balanceOrder.orderedAt)}</p>
                             </div>
                           </div>
                         </Link>
@@ -125,7 +126,7 @@ const OrdersPage = () => {
 
                             <div className="flex justify-center items-center gap-1">
                               <BiTime size={18} />
-                              <p>22/2/2022</p>
+                              <p>{FormatDate(ucOrder.orderedAt)}</p>
                             </div>
                           </div>
                         </Link>

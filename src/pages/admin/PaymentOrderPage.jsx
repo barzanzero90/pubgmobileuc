@@ -88,20 +88,21 @@ const PaymentOrderPage = () => {
                 {balanceOrder ? (
                   <div className="flex flex-col justify-center items-center gap-4">
                     <h3 className="text-lg font-semibold">
-                      {formatMoney(balanceOrder.balanceValue)}IQD
+                      {formatMoney(balanceOrder.balanceValue)} IQD
+                      : باڵانسی ناردوو 
                     </h3>
                     <p>رێگای پارەدان : {balanceOrder.paymentMethodName}</p>
                     <p>ژمارەی باڵانس پێناردوو : {balanceOrder.phoneNumber}</p>
                     {/* <p>کاتی داواکاری : {balanceOrder.orderedAt}</p> */}
-                    <p>لەلایەن : {balanceOrder.userFullName}</p>
+                    <p>{balanceOrder.userFullName} : لەلایەن </p>
 
                     <p>
-                      دۆخی داواکاری :{" "}
                       <input
                         type="checkbox"
                         checked={balanceOrder.isOrderActive || false}
                         onChange={handleActiveOrder}
                       />
+                      {" "} : دۆخی داواکاری
                     </p>
 
                     <input

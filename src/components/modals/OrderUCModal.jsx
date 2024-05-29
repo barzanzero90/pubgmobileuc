@@ -24,17 +24,11 @@ const OrderUCModal = ({
     try {
       if (pubgId.length == 0) {
         alert("تکایە ئایدی پۆبجی بنووسە");
-      }
-
-      if (pubgId.length < 10) {
+      } else if (pubgId.length < 10) {
         alert("نابێت ئایدی پۆبجی لە 10 ژمارە کەمتر بێت");
-      }
-
-      if (pubgId.length > 10) {
+      } else if (pubgId.length > 10) {
         alert("نابێت ئایدی پۆبجی لە 10 ژمارە زۆرتر بێت");
-      }
-
-      if (pubgId.length == 10) {
+      } else if (pubgId.length == 10) {
         const productData = {
           selectedProduct,
           userFullName: user?.fullName,

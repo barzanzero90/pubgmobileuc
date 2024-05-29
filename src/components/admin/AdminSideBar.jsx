@@ -21,7 +21,7 @@ const AdminSideBar = ({ user }) => {
         <>
           <div
             className="md:hidden fixed top-5 right-0 flex"
-            style={{ zIndex: 1 }}
+            style={{ zIndex: 999 }}
           >
             <button onClick={() => setOpenAdminSideBar(!openAdminSideBar)}>
               {openAdminSideBar ? (
@@ -42,6 +42,7 @@ const AdminSideBar = ({ user }) => {
             className={`fixed top-0 right-0 hidden md:flex flex-col items-end p-4 mr-0 ml-auto ${
               theme == "light" ? "bg-white shadow-md" : "bg-[#131314]"
             } w-[300px] h-screen gap-5`}
+            style={{ zIndex: 999 }}
           >
             <Link to="/admin/home" className="text-3xl">
               LOGO
@@ -88,7 +89,7 @@ const AdminSideBar = ({ user }) => {
                 <p>یوسی</p>
               </Link>
 
-              <Link
+              {/* <Link
                 to="/admin/accounts"
                 className="flex flex-row-reverse justify-center items-center gap-2 p-1 hover:bg-[#969393]/25 rounded-md active:scale-95 transform transition-all duration-100 ease-in-out"
               >
@@ -102,7 +103,7 @@ const AdminSideBar = ({ user }) => {
               >
                 <RiCoupon2Line size={23} />
                 <p>کۆپۆنەکان</p>
-              </Link>
+              </Link> */}
 
               <Link
                 to="/admin/feedbacks"
@@ -165,7 +166,7 @@ const AdminSideBar = ({ user }) => {
                   <p>یوسی</p>
                 </Link>
 
-                <Link
+                {/* <Link
                   to="/admin/accounts"
                   className="flex flex-row-reverse justify-center items-center gap-2 p-1 hover:bg-[#969393]/25 rounded-md active:scale-95 transform transition-all duration-100 ease-in-out"
                 >
@@ -179,7 +180,7 @@ const AdminSideBar = ({ user }) => {
                 >
                   <RiCoupon2Line size={23} />
                   <p>کۆپۆنەکان</p>
-                </Link>
+                </Link> */}
 
                 <Link
                   to="/admin/feedbacks"

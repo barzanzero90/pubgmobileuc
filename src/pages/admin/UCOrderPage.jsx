@@ -6,6 +6,7 @@ import { useProducts } from "../../context/ProductsContext";
 import { formatMoney } from "../../utils/FormatMoney";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/FirebaseConfig";
+import { FormatDate } from "../../utils/FormatDate";
 
 const UCOrderPage = () => {
   const { user } = useAuth();
@@ -61,18 +62,19 @@ const UCOrderPage = () => {
                 {order ? (
                   <div className="flex flex-col justify-center items-center gap-4">
                     <h3 className="text-lg font-semibold">
-                      {order.selectedProduct.ucNumber}UC
+                      {order.selectedProduct.ucNumber} UC
+                      : یوسی 
                     </h3>
                     <p className="">
                       نرخ: {formatMoney(order.selectedProduct.ucPrice)}د.ع
                     </p>
-                    <p>کاتی داواکاری : {order.selectedProduct.orderedAt}</p>
+                    <p>کاتی داواکاری : {FormatDate(order.orderedAt)}</p>
                     <p>ئایدی پۆبجی : {order.pubgId}</p>
-                    <p>لەلایەن : {order.userFullName}</p>
+                    <p>{order.userFullName} : لەلایەن</p>
 
                     <p>
-                      دۆخی داواکاری :{" "}
                       <input type="checkbox" checked={order.isOrderActive || false} onChange={handleActiveOrder} />
+                      {" "} : دۆخی داواکاری
                     </p>
                   </div>
                 ) : (

@@ -44,10 +44,7 @@ const ForgotPassword = () => {
           </p>
         </div>
 
-        <form
-          onClick={handleForgotPassword}
-          className="flex flex-col justify-center items-center gap-3"
-        >
+        <form className="flex flex-col justify-center items-center gap-3">
           <input
             type="email"
             placeholder="ئیمەیڵ"
@@ -61,7 +58,10 @@ const ForgotPassword = () => {
             } p-2 rounded-md text-right`}
           />
 
-          <button className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md">
+          <button
+            onClick={handleForgotPassword}
+            className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md"
+          >
             ناردن
           </button>
         </form>

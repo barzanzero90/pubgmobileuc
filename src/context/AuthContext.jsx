@@ -1,7 +1,6 @@
 import {
   createContext,
   useContext,
-  useDebugValue,
   useEffect,
   useReducer,
 } from "react";
@@ -151,7 +150,6 @@ export function AuthContextProvider({ children }) {
           userData.password
         );
         await setDoc(userDoc, userData);
-        dispatch({ type: USERACTIONS.SIGN_UP_USER, payload: userData });
         navigate("/");
       } else {
         alert("ئەم ئیمەیڵە پێشتر بەکارهاتووە");
@@ -176,7 +174,7 @@ export function AuthContextProvider({ children }) {
         await updateDoc(userDoc, {
           lastLogin: new Date(),
         });
-        dispatch({ type: USERACTIONS.LOGIN_USER, payload: userData });
+        // dispatch({ type: USERACTIONS.LOGIN_USER, payload: userData });
         navigate("/");
       } else {
         alert("ئەم بەکارهێنەرە بوونی نییە");

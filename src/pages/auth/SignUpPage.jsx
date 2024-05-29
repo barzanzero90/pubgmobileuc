@@ -88,10 +88,7 @@ const SignUpPage = () => {
           <p>لێرە خۆت تۆمار بکە</p>
         </div>
 
-        <form
-          onSubmit={handleSignUpUser}
-          className="flex flex-col justify-center items-center gap-3"
-        >
+        <form className="flex flex-col justify-center items-center gap-3">
           <input
             type="file"
             onChange={(e) => setUserImage(e.target.files[0])}
@@ -180,7 +177,10 @@ const SignUpPage = () => {
             id={`${inputId}-user-confirm-password`}
             title="دووبارەکردنەوەی وشەی نهێنی"
           />
-          <button className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md">
+          <button
+            onClick={handleSignUpUser}
+            className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md"
+          >
             خۆتۆمارکردن
           </button>
           <p>

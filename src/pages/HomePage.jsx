@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import SocialMediasSwiper from "../components/SocialMediasSwiper";
 import SmallUC from "../assets/images/smalluc.png";
-import { IoIosHeartEmpty } from "react-icons/io";
 import OrderUCModal from "../components/modals/OrderUCModal";
-import AccountCard from "../components/AccountCard";
 import { useTheme } from "../context/ThemeContext";
 import { useProducts } from "../context/ProductsContext";
 import { formatMoney } from "../utils/FormatMoney";
@@ -15,7 +12,7 @@ const HomePage = () => {
   const { user } = useAuth();
   const [showOrderModal, setShowOrderModal] = useState(false);
   const { theme } = useTheme();
-  const { uc, accounts } = useProducts();
+  const { uc } = useProducts();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleSelectProduct = (uc) => {

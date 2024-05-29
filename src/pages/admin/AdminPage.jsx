@@ -15,6 +15,8 @@ const AdminPage = () => {
   const { theme } = useTheme();
   const { orders, balanceOrders } = useProducts();
 
+  const totalMoney = orders.reduce((acc, order) => acc + order.selectedProduct.ucPrice, 0);
+
   return (
     <>
       {user ? (
@@ -53,7 +55,7 @@ const AdminPage = () => {
                         </div>
                         <p>کۆی گشتی</p>
                       </div>
-                      <h2 className="text-xl font-bold">20,000 IQD</h2>
+                      <h2 className="text-xl font-bold">{formatMoney(totalMoney)} IQD</h2>
                     </div>
 
                     <div className="flex flex-col justify-center items-center gap-2 bg-[#f9f9f9] border-l border-l-[#e4e4e5] w-[100%] h-full">
@@ -76,16 +78,6 @@ const AdminPage = () => {
                       <h2 className="text-xl font-bold">
                         {orders.length + balanceOrders.length}
                       </h2>
-                    </div>
-
-                    <div className="flex flex-col justify-center items-center gap-2 bg-[#f9f9f9] w-[100%] h-full">
-                      <div className="flex justify-center items-center gap-1">
-                        <div className="bg-[#969393]/25 rounded-full p-1">
-                          <GiProfit size={18} />
-                        </div>
-                        <p>قازانج</p>
-                      </div>
-                      <h2 className="text-xl font-bold">150,000</h2>
                     </div>
                   </div>
 

@@ -51,8 +51,7 @@ const LoginPage = () => {
         </div>
 
         <form
-          onClick={handleLoginUser}
-          className="flex flex-col justify-center items-center gap-3"
+F          className="flex flex-col justify-center items-center gap-3"
         >
           <input
             type="email"
@@ -90,7 +89,7 @@ const LoginPage = () => {
             </Link>
           </div>
 
-          <button className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md">
+          <button onClick={handleLoginUser} className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md">
             چوونەژوورەوە
           </button>
           <p>
