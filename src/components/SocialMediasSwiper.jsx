@@ -9,14 +9,14 @@ import { Autoplay } from "swiper/modules";
 const SocialMediasSwiper = () => {
   return (
     <div className="flex justify-center items-center w-full h-[125px] rounded-md">
-      <Swiper
+      {/* <Swiper
         modules={[Autoplay]}
         autoplay
         onAutoplayTimeLeft={2000}
         loop
         className="h-full"
-      >
-        <SwiperSlide className="h-full">
+      > */}
+        {/* <SwiperSlide className="h-full">
           <Link
             to=""
             className="flex flex-row-reverse justify-start items-center gap-2 w-full h-full bg-gradient-to-tr from-[#FFBE63] to-[#A742AA] rounded-md"
@@ -26,10 +26,11 @@ const SocialMediasSwiper = () => {
               فۆلۆکردن لە ئێنستاگرام
             </h3>
           </Link>
-        </SwiperSlide>
-        <SwiperSlide className="h-full">
+        </SwiperSlide> */}
+        <div className="w-full h-full">
           <Link
-            to=""
+            to="https://www.tiktok.com/@yasobarzani0"
+            target="_blank"
             className="flex flex-row-reverse justify-start items-center gap-2 w-full h-full bg-gradient-to-tr from-[#E4004D] to-[#35BBBE] rounded-md"
           >
             <img src={TIKTOK} className="w-32 h-32 object-scale-down" />
@@ -37,8 +38,8 @@ const SocialMediasSwiper = () => {
               فۆلۆکردن لە تیک تۆک
             </h3>
           </Link>
-        </SwiperSlide>
-      </Swiper>
+        </div>
+      {/* </Swiper> */}
     </div>
   );
 };
