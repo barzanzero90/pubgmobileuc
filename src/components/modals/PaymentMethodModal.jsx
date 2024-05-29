@@ -74,7 +74,7 @@ const PaymentMethodModal = ({
         <div className="flex flex-col justify-end items-end gap-2">
           <p>١- ناردنی ئەو بڕە پارەی دەتەوێت بۆ ئەم ژمارەیە</p>
           <strong className="mx-auto">
-            <a href="tel:+96407518980248">07518980248</a>
+            <a href="tel:+9647504671829">07504671829</a>
           </strong>
         </div>
 

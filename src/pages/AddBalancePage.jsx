@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
@@ -13,11 +14,14 @@ const AddBalancePage = () => {
   const [paymentMethod, setPaymentMethod] = useState("FastPay");
   const { theme } = useTheme();
 
- 
   return (
     <>
       {user ? (
         <div className="md:grid flex grid-cols-3 gap-5 py-[80px] w-full">
+          <Helmet>
+            <title>یوسی پۆبجی مۆبایل | زیادکردنی باڵانس</title>
+          </Helmet>
+
           <SideBar user={user} />
 
           <div className="col-span-2 p-2 w-full">
@@ -47,7 +51,11 @@ const AddBalancePage = () => {
                         setIsSelectedPaymentMethod(!isSelectedPaymentMethod);
                         setPaymentMethod(paymentMethod);
                       }}
-                      className={`flex flex-row-reverse justify-start items-center gap-3 w-[350px] p-2 rounded-md border ${theme == "light" ? "border-[#E4E4E5] shadow-md drop-shadow-md" : "border-[#969393]/25"} hover:shadow-lg active:scale-95 transform transition-all duration-100 ease-in-out`}
+                      className={`flex flex-row-reverse justify-start items-center gap-3 w-[350px] p-2 rounded-md border ${
+                        theme == "light"
+                          ? "border-[#E4E4E5] shadow-md drop-shadow-md"
+                          : "border-[#969393]/25"
+                      } hover:shadow-lg active:scale-95 transform transition-all duration-100 ease-in-out`}
                     >
                       <img
                         src={paymentMethod.paymentImage}
