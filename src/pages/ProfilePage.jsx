@@ -11,6 +11,7 @@ import { useTheme } from "../context/ThemeContext";
 import { useProducts } from "../context/ProductsContext";
 import { formatMoney } from "../utils/FormatMoney";
 import { TbLogout } from "react-icons/tb";
+import { Helmet } from "react-helmet";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -37,6 +38,10 @@ const ProfilePage = () => {
     <>
       {user ? (
         <div className="md:grid flex grid-cols-3 gap-5 py-[80px] w-full">
+          <Helmet>
+            <title>یوسی پۆبجی مۆبایل | هەژمارەکەم</title>
+          </Helmet>
+
           <SideBar user={user} />
 
           <div className="col-span-2 p-2 w-full">

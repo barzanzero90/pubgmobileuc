@@ -3,46 +3,63 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { USERACTIONS } from "../../actions/userActions";
 import { useTheme } from "../../context/ThemeContext";
+import { Helmet } from "react-helmet";
 
 const LoginPage = () => {
-  const { user, loading, loginUser, dispatch } = useAuth();
+  const { user, loginUser, dispatch } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { theme } = useTheme();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
-      return navigate("/");
+      navigate("/");
     }
   }, [user, navigate]);
-
-  if (loading) {
-    <>Loading...</>;
-  }
 
   const handleLoginUser = async (e) => {
     e.preventDefault();
 
+    if (email.trim() === "") {
+      alert("تکایە ئیمەیڵەکەت بنووسە");
+      return;
+    } else if (password.trim() === "") {
+      alert("تکایە وشەی نهێنیت بنووسە");
+      return;
+    }
+
     try {
-      if (email.trim() != "" && password.trim() != "") {
-        const userData = {
-          email,
-          password,
-        };
-        await loginUser(userData);
-      }
+      setLoading(true);
+
+      const userData = {
+        email,
+        password,
+      };
+
+      await loginUser(userData);
+
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/");
+      }, 2000);
     } catch (error) {
       dispatch({ type: USERACTIONS.SET_ERROR, payload: error.message });
       console.log(error.message);
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen relative">
+      <Helmet>
+        <title>یوسی پۆبجی مۆبایل | چوونەژوورەوە</title>
+      </Helmet>
+
       <div
         className={`w-[400px] h-[350px] border-2 ${
-          theme == "light" ? "border-[#e4e4e5]" : "border-[#969393]/50"
+          theme === "light" ? "border-[#e4e4e5]" : "border-[#969393]/50"
         } shadow-lg drop-shadow-xl rounded-md flex flex-col justify-center items-center gap-4`}
       >
         <div className="flex flex-col justify-center items-center gap-3">
@@ -50,9 +67,7 @@ const LoginPage = () => {
           <p>لێرە بچۆ ژوورەوە</p>
         </div>
 
-        <form
-F          className="flex flex-col justify-center items-center gap-3"
-        >
+        <form className="flex flex-col justify-center items-center gap-3">
           <input
             type="email"
             placeholder="ئیمەیڵ"
@@ -60,7 +75,7 @@ F          className="flex flex-col justify-center items-center gap-3"
             onChange={(e) => setEmail(e.target.value)}
             required
             className={`w-[350px] border ${
-              theme == "light"
+              theme === "light"
                 ? "border-[#e4e4e5]"
                 : "bg-[#212121] border-[#969393]/25"
             } p-2 rounded-md text-right`}
@@ -75,7 +90,7 @@ F          className="flex flex-col justify-center items-center gap-3"
               onChange={(e) => setPassword(e.target.value)}
               required
               className={`w-[350px] border ${
-                theme == "light"
+                theme === "light"
                   ? "border-[#e4e4e5]"
                   : "bg-[#212121] border-[#969393]/25"
               } p-2 rounded-md text-right`}
@@ -89,7 +104,10 @@ F          className="flex flex-col justify-center items-center gap-3"
             </Link>
           </div>
 
-          <button onClick={handleLoginUser} className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md">
+          <button
+            onClick={handleLoginUser}
+            className="bg-[#2849E9] hover:bg-[#243fc7] text-white active:scale-95 transform transition-all duration-100 ease-in-out w-[350px] p-2 rounded-md"
+          >
             چوونەژوورەوە
           </button>
           <p>
@@ -103,6 +121,13 @@ F          className="flex flex-col justify-center items-center gap-3"
           </p>
         </form>
       </div>
+
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-2 justify-center items-center bg-black/50 backdrop-blur-sm">
+          <div className="loader"></div>
+          <p>چوونەژوورەوە</p>
+        </div>
+      )}
     </div>
   );
 };

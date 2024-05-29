@@ -8,6 +8,7 @@ import { formatMoney } from "../utils/FormatMoney";
 import { useTheme } from "../context/ThemeContext";
 import { BiTime } from "react-icons/bi";
 import { FormatDate } from "../utils/FormatDate";
+import { Helmet } from "react-helmet";
 
 const MyOrdersPage = () => {
   const { user } = useAuth();
@@ -26,6 +27,10 @@ const MyOrdersPage = () => {
     <>
       {user ? (
         <div className="md:grid flex grid-cols-3 gap-5 py-[80px] w-full">
+          <Helmet>
+            <title>یوسی پۆبجی مۆبایل | داواکاریەکانم</title>
+          </Helmet>
+
           <SideBar user={user} />
 
           <div className="col-span-2 p-2 w-full">

@@ -2,15 +2,19 @@ import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
+import { Helmet } from "react-helmet";
 
 const TutorialPage = () => {
   const { user } = useAuth();
 
-  
   return (
     <>
       {user ? (
         <div className="md:grid flex grid-cols-3 gap-5 py-[80px] w-full">
+          <Helmet>
+            <title>یوسی پۆبجی مۆبایل | ڕێنمایەکان</title>
+          </Helmet>
+
           <SideBar user={user} />
 
           <div className="col-span-2 p-2 w-full">

@@ -5,6 +5,7 @@ import { USERACTIONS } from "../../actions/userActions";
 import { useTheme } from "../../context/ThemeContext";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase/FirebaseConfig";
+import { Helmet } from "react-helmet";
 
 const SignUpPage = () => {
   const { user, signUpUser, dispatch } = useAuth();
@@ -17,6 +18,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { theme } = useTheme();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -39,36 +41,59 @@ const SignUpPage = () => {
   const handleSignUpUser = async (e) => {
     e.preventDefault();
 
-    try {
-      if (
-        fullName.trim() != "" &&
-        phoneNumber &&
-        email.trim() != "" &&
-        password.trim() != "" &&
-        confirmPassword.trim() != ""
-      ) {
-        let userImageURL = null;
-        if (userImage) {
-          userImageURL = await handleUploadProfileImage();
-        }
+    if (!userImage) {
+      alert("تکایە وێنەی هەژمارەکەت دابنێ");
+      return;
+    } else if (fullName.trim() == "") {
+      alert("تکایە ناوی تەواوت بنووسە");
+      return;
+    } else if (!phoneNumber) {
+      alert("تکایە ژمارە مۆبایلت بنووسە");
+      return;
+    } else if (email.trim() == "") {
+      alert("تکایە ئیمێیڵەکەت بنووسە");
+      return;
+    } else if (password.trim() == "") {
+      alert("تکایە وشەی نهێنیت بنووسە");
+      return;
+    } else if (confirmPassword.trim() == "") {
+      alert("تکایە دووبارە وشەی نهێنیت بنووسە");
+      return;
+    } else if (password != confirmPassword) {
+      alert("وشەی نهێنی وەکو یەک نییە");
+      return;
+    }
 
-        if (password == confirmPassword) {
-          const userData = {
-            userImageURL,
-            fullName,
-            phoneNumber,
-            email,
-            password,
-            createdAt: new Date(),
-            lastLogin: new Date(),
-            userMoney: 0,
-            userMoneySpent: 0,
-            isAdmin: false,
-          };
-          await signUpUser(userData);
-        } else {
-          alert("وشەی نهێنی و دووبارەکردنەوەی وشەی نهێنی وەک یەک نین");
-        }
+    try {
+      let userImageURL = null;
+      if (userImage) {
+        userImageURL = await handleUploadProfileImage();
+      }
+
+      if (password == confirmPassword) {
+        setLoading(true);
+
+        const userData = {
+          userImageURL,
+          fullName,
+          phoneNumber,
+          email,
+          password,
+          createdAt: new Date(),
+          lastLogin: new Date(),
+          userMoney: 0,
+          userMoneySpent: 0,
+          isAdmin: false,
+        };
+
+        await signUpUser(userData);
+
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/");
+        }, 2000);
+      } else {
+        alert("وشەی نهێنی و دووبارەکردنەوەی وشەی نهێنی وەک یەک نین");
       }
     } catch (error) {
       dispatch({ type: USERACTIONS.SET_ERROR, payload: error.message });
@@ -78,6 +103,10 @@ const SignUpPage = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
+      <Helmet>
+        <title>یوسی پۆبجی مۆبایل | خۆتۆمارکردن</title>
+      </Helmet>
+
       <div
         className={`w-[400px] h-[500px] border-2 ${
           theme == "light" ? "border-[#e4e4e5]" : "border-[#969393]/50"
@@ -194,6 +223,13 @@ const SignUpPage = () => {
           </p>
         </form>
       </div>
+
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-2 justify-center items-center bg-black/50 backdrop-blur-sm">
+          <div className="loader"></div>
+          <p>خۆتۆمارکردن</p>
+        </div>
+      )}
     </div>
   );
 };

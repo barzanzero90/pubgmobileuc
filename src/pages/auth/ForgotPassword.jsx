@@ -3,6 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import { USERACTIONS } from "../../actions/userActions";
 import { useTheme } from "../../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const ForgotPassword = () => {
   const { user, forgotPassword, dispatch } = useAuth();
@@ -31,6 +32,10 @@ const ForgotPassword = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
+      <Helmet>
+        <title>یوسی پۆبجی مۆبایل | وشەی نهێنیت لەبیرکردووە؟</title>
+      </Helmet>
+
       <div
         className={`w-[400px] h-[250px] border-2 ${
           theme == "light" ? "border-[#e4e4e5]" : "border-[#969393]/50"

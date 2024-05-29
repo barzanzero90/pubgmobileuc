@@ -150,7 +150,7 @@ export function AuthContextProvider({ children }) {
           userData.password
         );
         await setDoc(userDoc, userData);
-        navigate("/");
+        // navigate("/");
       } else {
         alert("ئەم ئیمەیڵە پێشتر بەکارهاتووە");
       }
@@ -175,7 +175,7 @@ export function AuthContextProvider({ children }) {
           lastLogin: new Date(),
         });
         // dispatch({ type: USERACTIONS.LOGIN_USER, payload: userData });
-        navigate("/");
+        // navigate("/");
       } else {
         alert("ئەم بەکارهێنەرە بوونی نییە");
       }
